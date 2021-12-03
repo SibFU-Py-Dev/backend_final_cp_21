@@ -116,10 +116,10 @@ class Article(models.Model):
             "content": self.content,
             "resource_link": self.resource_link,
             "video_link": self.video_link,
-            "prev": self.prev.pk,
-            "next": self.next.pk,
+            "prev": self.prev,
+            "next": self.next,
             "files": [f.file for f in ArticleFile.objects.filter(pk=self.pk)],
-            "project": self.project.pk,
+            "project": self.project,
         }
 
 
