@@ -9,7 +9,6 @@ class Task(models.Model):
     description = models.TextField()
     verifiability = models.BooleanField()
     experience = models.IntegerField()
-    in_course = models.BooleanField()
     achievement = ...
 
 
@@ -18,6 +17,7 @@ class UserTask(models.Model):
     class Status(models.TextChoices):
         confirmed = 'S1', 'Подтверждено'
         cancelled = 'S2', 'Отклонено'
+
 
     deadline = models.DateTimeField(null=True, blank=True)
     perfect_deadline = models.DateTimeField(null=True, blank=True)
