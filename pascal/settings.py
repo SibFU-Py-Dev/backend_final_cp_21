@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'backend-final-cp-21.herokuapp.com',
+    '127.0.0.1',
 ]
 
 
