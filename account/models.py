@@ -1,10 +1,17 @@
 from django.db import models
+
 from django.contrib.auth.models import User
+from project.models import Project
 
 
 class Employee(models.Model):
     img = ...
-    user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.CASCADE, related_name="employee")
+    user = models.ForeignKey(
+        User,
+        verbose_name="Пользователь",
+        on_delete=models.CASCADE,
+        related_name="employee"
+    )
     mobile_phone = ...
     city_phone = ...
     hobby = ...
@@ -13,3 +20,9 @@ class Employee(models.Model):
     position = ...
     achievements = ...
     experience = ...
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.SET_NULL,
+        related_name='employees',
+        related_query_name='employee',
+    )
