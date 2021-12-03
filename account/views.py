@@ -5,7 +5,7 @@ from . import serializers, models
 
 
 class EmployeeListView(generics.ListAPIView):
-    permission_classes = [permissions.AllowAny, ]
+    permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = serializers.EmployeeSerializer
     queryset = models.Employee.objects.all()
 
