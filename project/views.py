@@ -14,9 +14,19 @@ class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all().select_related()
 
 
-class ArticleViewSet(viewsets.ModelViewSet):
-    serializer_class = ArticleSerializer
-    queryset = Article.objects.all().select_related()
+# class ArticleViewSet(viewsets.ModelViewSet):
+#     serializer_class = ArticleSerializer
+#     queryset = Article.objects.all().select_related()
+
+
+def articles(request):
+    return JsonResponse([a.get_json() for a in Article.objects.all()],
+                        status=200)
+
+
+def article(request, art_id):
+    return JsonResponse(Article.objects.filter(pk=art_id).first().get_json(),
+                        status=200)
 
 
 class HintViewSet(viewsets.ModelViewSet):

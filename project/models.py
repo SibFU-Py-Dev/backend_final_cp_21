@@ -119,7 +119,6 @@ class Article(models.Model):
             "prev": self.prev.primary_key,
             "next": self.next.primary_key,
             "files": [f.file for f in ArticleFile.objects.filter(pk=self.pk)],
-            "Леха лох": "123",
             "project": self.project.primary_key,
         }
 
