@@ -59,7 +59,7 @@ class ArticleFileSerializer(serializers.ModelSerializer):
 
 class ArticleSerializer(serializers.ModelSerializer):
     source_hints = HintSerializer(many=True, read_only=True)
-    files = ArticleFileSerializer(many=True, read_only=True)
+    files = ArticleFileSerializer(many=True)
 
     prev_id = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
     next_id = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
@@ -69,4 +69,5 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'title', 'content', 'resource_link', 'video_link',
             'prev_id', 'next_id', 'source_hints', 'files',
+            'resource_link_1', 'resource_link_2',
         ]
