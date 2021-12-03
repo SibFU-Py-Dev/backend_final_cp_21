@@ -10,13 +10,13 @@
 
 ## Участники проекта
 
-|       Имя        |         Компетенция         |        Telegram        |
-|:-----------------|:----------------------------|:-----------------------|
-| Алексей Бобров   | Backend, Django             | @sazoks1               |
-| Алексей Колезнев | Frontend, React             |                        |
-| Алексей Ковалюк  | Frontend, React             |                        |
-| Никита Матюхин   | Backend, Django             |                        |
-| Назар Бондаренко | Backend, Django             | @nmatyukhin            |
+| Имя              |         Компетенция         | Telegram    |
+|:-----------------|:----------------------------|:------------|
+| Алексей Бобров   | Backend, Django             | @sazoks1    |
+| Алексей Колезнев | Frontend, React             |             |
+| Алексей Ковалюк  | Frontend, React             |             |
+| Никита Матюхин   | Backend, Django             | @nmatyukhin |
+| Назар Матвиенко  | Backend, Django             | @ZZaRRyaDD  |
 
 ## Доступы
 
