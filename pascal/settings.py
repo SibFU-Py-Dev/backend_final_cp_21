@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'djoser',
-    'account.apps.AccountConfig'
+    'account.apps.AccountConfig',
+    'project.apps.ProjectConfig',
+    'tasks.apps.TasksConfig',
 ]
 
 REST_FRAMEWORK = {
