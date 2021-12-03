@@ -2,6 +2,8 @@ from re import template
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
+from django.db.models.deletion import SET_NULL
+from django.db.models.fields import CharField
 from django.utils.translation import gettext_lazy as _
 
 
@@ -12,6 +14,11 @@ phone_regex = RegexValidator(
         'Максимальная длина номера - 15 символов.'
     )
 )
+
+
+def article_directory_path(instance, filename):
+    # Загрузка файлов в MEDIA_ROOT/article_<id>/<filename>
+    return 'article_{0}/{1}'.format(instance.article.id, filename)
 
 # Create your models here.
 class Member(models.Model):
@@ -46,54 +53,102 @@ class Member(models.Model):
     )
 
 
-class Resource(models.Model):
-
-    class ResourceType(models.TextChoices):
-        GITHUB = 'GH', _('GitHub')
-        GITLAB = 'GL', _('GitLab')
-        JIRA = 'JR', _('Jira')
-        CONFLUENCE = 'CF', _('Confluence')
-        WIKI = 'WK', _('Wiki')
-        OTHER = 'TH', _('Other')
-
-    name = models.CharField(
+class Article(models.Model):
+    title = models.CharField(
         max_length=40,
-        help_text='Название ресурса проекта',
+        help_text='Название статьи проекта',
+    )
+    content = models.TextField(
+        help_text='Описание статьи'
+    )
+    resource_link = models.URLField(
+        max_length=100,
+        null=True,
+        help_text='Ссылка на ресурс статьи',
+    )
+    video_link = models.URLField(
+        max_length=100,
+        null=True,
+        help_text='Ссылка на видео-описание ресурса',
+    )
+    prev = models.ForeignKey(
+        'self',
+        on_delete=SET_NULL,
+        related_name='nextful',
+        null=True,
+        help_text='Предыдущая статья в списке',
+    )
+    next = models.ForeignKey(
+        'self',
+        on_delete=SET_NULL,
+        related_name='prevful',
+        null=True,
+        help_text='Следующая статья в списке',
     )
     project = models.ForeignKey(
         to='Project',
-        related_name='resources',
-        related_query_name='resource',
+        related_name='articles',
+        related_query_name='article',
         on_delete=models.SET_NULL,
         null=True,
-        help_text='Проект этого ресурса',
+        help_text='Проект, в котором содержится эта статья',
     )
-    link = models.URLField(
+
+
+class Hint(models.Model):
+    source = models.ForeignKey(
+        'Article',
+        related_name='source_hints',
+        null=True,
+        on_delete=models.CASCADE
+    )
+    target = models.OneToOneField(
+        'Article',
+        related_name='target_hint',
+        null=True,
+        on_delete=models.CASCADE
+    )
+    name = models.CharField(
+        max_length=50,
+        help_text='Название ресурса под ссылку',
+    )
+    comment = models.CharField(
         max_length=100,
-        help_text='Ссылка на проектный ресурс',
+        blank=True,
+        help_text='Комментарий к связке статей',
     )
-    type = models.CharField(
-        max_length=2,
-        choices=ResourceType.choices,
-        default=ResourceType.OTHER,
-        help_text='Тип ресурса проекта',
+
+
+class ArticleFile(models.Model):
+    file = models.FileField(
+        upload_to=article_directory_path,
+        help_text='',
+    )
+    article = models.ForeignKey(
+        to='Article',
+        related_name='files',
+        related_query_name='file',
+        on_delete=models.CASCADE,
+        null=True,
+        help_text='Файлы конкретной статьи',
     )
 
 
 class AccessRequest(models.Model):
-    resource = models.OneToOneField(
-        to='Resource',
-        related_name='access',
-        related_query_name='access',
-        on_delete=models.CASCADE,
-        help_text='Ресурс проекта',
-    )
     link = models.URLField(
         max_length=100,
         help_text='Ссылка на ресурс в IDM',
     )
     template_content = models.TextField(
         help_text='Заготовка заявки на получение доступа',
+    )
+    article = models.OneToOneField(
+        to='Article',
+        related_name='access',
+        related_query_name='access',
+        on_delete=models.CASCADE,
+        null=True,
+        help_text='Ресурс проекта',
     )
 
 
