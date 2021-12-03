@@ -10,7 +10,10 @@ class Employee(models.Model):
         TEACHER = 'TC', 'Наставник'
         ADMIN = 'AD', 'Руководитель проекта'
 
-    role = models.CharField(verbose_name='Роль', choices=Roles.choices)
+    role = models.CharField(max_length=2,
+                            verbose_name='Роль',
+                            choices=Roles.choices,
+                            default=Roles.STUDENT)
     img = models.ImageField(
         upload_to='users/avatars/',
         null=True,
