@@ -49,6 +49,7 @@ class Member(models.Model):
         related_query_name='member',
         on_delete=models.CASCADE,
         null=True,
+        blank=True,
         help_text='Проект участника команды',
     )
 
@@ -76,6 +77,7 @@ class Article(models.Model):
         on_delete=SET_NULL,
         related_name='nextful',
         null=True,
+        blank=True,
         help_text='Предыдущая статья в списке',
     )
     next = models.ForeignKey(
@@ -83,6 +85,7 @@ class Article(models.Model):
         on_delete=SET_NULL,
         related_name='prevful',
         null=True,
+        blank=True,
         help_text='Следующая статья в списке',
     )
     project = models.ForeignKey(
@@ -91,6 +94,7 @@ class Article(models.Model):
         related_query_name='article',
         on_delete=models.SET_NULL,
         null=True,
+        blank=True,
         help_text='Проект, в котором содержится эта статья',
     )
 
@@ -100,12 +104,14 @@ class Hint(models.Model):
         'Article',
         related_name='source_hints',
         null=True,
+        blank=True,
         on_delete=models.CASCADE
     )
     target = models.OneToOneField(
         'Article',
         related_name='target_hint',
         null=True,
+        blank=True,
         on_delete=models.CASCADE
     )
     name = models.CharField(
@@ -130,6 +136,7 @@ class ArticleFile(models.Model):
         related_query_name='file',
         on_delete=models.CASCADE,
         null=True,
+        blank=True,
         help_text='Файлы конкретной статьи',
     )
 
@@ -148,6 +155,7 @@ class AccessRequest(models.Model):
         related_query_name='access',
         on_delete=models.CASCADE,
         null=True,
+        blank=True,
         help_text='Ресурс проекта',
     )
 
