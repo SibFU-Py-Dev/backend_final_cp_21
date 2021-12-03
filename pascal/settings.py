@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'djoser',
     'account.apps.AccountConfig',
     'project.apps.ProjectConfig',
+    'tasks.apps.TasksConfig',
 ]
 
 REST_FRAMEWORK = {
