@@ -5,6 +5,12 @@ from project.models import Project
 
 
 class Employee(models.Model):
+    class Roles(models.TextChoices):
+        STUDENT = 'ST', 'Новый сотрудник'
+        TEACHER = 'TC', 'Наставник'
+        ADMIN = 'AD', 'Руководитель проекта'
+
+    role = models.CharField(verbose_name='Роль', choices=Roles.choices)
     img = models.ImageField(
         upload_to='users/avatars/',
         null=True,
