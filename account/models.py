@@ -35,4 +35,5 @@ class Employee(models.Model):
         related_name='employees',
         related_query_name='employee',
         null=True,
+        blank=True,
     )
