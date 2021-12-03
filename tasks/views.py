@@ -6,7 +6,9 @@ from . import models, serializers
 class UserTasksView(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = serializers.UserTasksSerializer
-    queryset = models.UserTask.objects.all()
+
+    def get_queryset(self):
+        return models.UserTask.objects.filter(user__id=self.kwargs['id'])
 
 
 class UserTaskCreateView(generics.CreateAPIView):
