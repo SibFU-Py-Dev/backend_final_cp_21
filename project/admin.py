@@ -15,17 +15,20 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display_links = ('title', )
 
 
-class AccessRequestInline(admin.StackedInline):
-    model = AccessRequest
+@admin.register(AccessRequest)
+class AccessRequestAdmin(admin.ModelAdmin):
+    list_display = ('link', )
+    list_display_links = ('link', )
 
 
 class ArticleFileInline(admin.StackedInline):
     model = ArticleFile
 
 
-class HintInline(admin.StackedInline):
-    model = Hint
-    fk_name = 'target'
+@admin.register(Hint)
+class HintAdmin(admin.ModelAdmin):
+    list_display = ('source', 'target')
+    list_display_links = ('source', 'target')
 
 
 @admin.register(Article)
@@ -33,7 +36,5 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', )
     list_display_links = ('title', )
     inlines = [
-        AccessRequestInline,
         ArticleFileInline,
-        HintInline
     ]

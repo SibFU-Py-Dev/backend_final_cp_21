@@ -103,7 +103,7 @@ class Article(models.Model):
             "title": self.title,
             "content": self.content,
             "resource_link": self.resource_link,
-            "video_link": str(self.video_link).split('=')[1],
+            "video_link": str(self.video_link).split('?v=')[1],
             "prev": self.prev.primary_key,
             "next": self.next.primary_key,
             "project": self.project.primary_key,
