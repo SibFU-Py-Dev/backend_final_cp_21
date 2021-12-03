@@ -1,4 +1,4 @@
-from rest_framework import generics, status, permissions, views
+from rest_framework import generics, status, permissions
 from rest_framework.response import Response
 from . import serializers
 
