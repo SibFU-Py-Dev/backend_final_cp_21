@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-s+o%86^^=@jbygo+*mnu!gv+uzdoyq0z4hjsdt3hn1ks=fsr)c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'calculating-vacation-system.herokuapp.com',
+]
 
 
 # Application definition
