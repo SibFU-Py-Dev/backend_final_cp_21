@@ -10,3 +10,6 @@ class UserTaskInline(admin.StackedInline):
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', )
+    inlines = [
+        UserTaskInline,
+    ]
