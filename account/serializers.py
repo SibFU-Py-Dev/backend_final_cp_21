@@ -3,6 +3,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
 from . import models
+from project.serializers import ProjectSerializer
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -40,10 +41,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    project = ProjectSerializer(read_only=True)
 
     class Meta:
         model = models.Employee
-        fields = "__all__"
+        fields = ('id', 'img', 'mobile_phone', 'city_phone', 'hobby', 'skills', 'interests', 'experience',
+                  'project', 'user'
+                  )
 
 
 class LogoutSerializer(serializers.Serializer):
