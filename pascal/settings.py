@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-s+o%86^^=@jbygo+*mnu!gv+uzdoyq0z4hjsdt3hn1ks=fsr)c
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'calculating-vacation-system.herokuapp.com',
+    'backend-final-cp-21.herokuapp.com',
 ]
 
 
