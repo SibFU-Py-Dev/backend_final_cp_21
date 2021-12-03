@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-s+o%86^^=@jbygo+*mnu!gv+uzdoyq0z4hjsdt3hn1ks=fsr)c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'backend-final-cp-21.herokuapp.com',
+]
 
 
 # Application definition
@@ -37,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -118,6 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

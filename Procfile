@@ -1,1 +1,1 @@
-web: gunicorn pascal.wsgi:application
+web: gunicorn pascal.wsgi
