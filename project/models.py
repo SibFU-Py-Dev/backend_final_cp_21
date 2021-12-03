@@ -67,7 +67,7 @@ class Article(models.Model):
         null=True,
         help_text='Ссылка на ресурс статьи',
     )
-    video_link = models.URLField(
+    video_link = models.TextField(
         max_length=100,
         null=True,
         help_text='Ссылка на видео-описание ресурса',
@@ -103,7 +103,7 @@ class Article(models.Model):
             "title": self.title,
             "content": self.content,
             "resource_link": self.resource_link,
-            "video_link": str(self.video_link).split('?v=')[1],
+            "video_link": self.video_link,
             "prev": self.prev.primary_key,
             "next": self.next.primary_key,
             "project": self.project.primary_key,
