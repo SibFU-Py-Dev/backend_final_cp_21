@@ -23,11 +23,3 @@ class HintViewSet(viewsets.ModelViewSet):
     serializer_class = HintSerializer
     queryset = Hint.objects.all().select_related()
 
-
-def articles(request):
-    current_article = Article.objects.filter(pk=1).first()
-    other_articles = Article.objects.exclude(current_article)
-    return JsonResponse({
-        "current_article": current_article,
-        "other_articles": other_articles,
-    }, status=200)
