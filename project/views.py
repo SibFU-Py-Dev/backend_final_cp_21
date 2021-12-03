@@ -25,8 +25,8 @@ class HintViewSet(viewsets.ModelViewSet):
 
 
 def articles(request):
-    current_article = Article.objects.filter(pk=1).first()
-    other_articles = Article.objects.all()
+    current_article = Article.objects.filter(pk=1).first().get_json()
+    other_articles = [a.get_json() for a in Article.objects.all()]
     return JsonResponse({
         "current_article": current_article,
         "other_articles": other_articles,
