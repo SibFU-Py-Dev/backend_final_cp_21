@@ -6,6 +6,7 @@ from .models import (
     Member,
     Article,
     AccessRequest,
+    ArticleFile,
 )
 
 
@@ -49,9 +50,16 @@ class HintSerializer(serializers.ModelSerializer):
         fields = ['target', 'name', 'comment']
 
 
+class ArticleFileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ArticleFile
+        fields = ['file']
+
+
 class ArticleSerializer(serializers.ModelSerializer):
     source_hints = HintSerializer(many=True, read_only=True)
-    files = serializers.StringRelatedField(many=True)
+    files = ArticleFileSerializer(many=True, read_only=True)
 
     prev_id = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
     next_id = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
