@@ -19,12 +19,13 @@ from rest_framework import routers
 from project import views as project_views
 
 router = routers.DefaultRouter()
-router.register('projects', project_views.ProjectViewSet)
+# router.register('projects', project_views.ProjectViewSet)
 router.register('articles', project_views.ArticleViewSet)
 router.register('hints', project_views.HintViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('account.urls')),
+    path('api/v1/', include('tasks.urls')),
     path('api/v1/', include(router.urls)),
 ]
