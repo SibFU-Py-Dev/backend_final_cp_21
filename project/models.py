@@ -110,17 +110,17 @@ class Article(models.Model):
         help_text='Проект, в котором содержится эта статья',
     )
 
-    def get_json(self):
-        return {
-            "title": self.title,
-            "content": self.content,
-            "resource_link": self.resource_link,
-            "video_link": self.video_link,
-            "prev": self.prev,
-            "next": self.next,
-            "files": [f.file for f in ArticleFile.objects.filter(pk=self.pk)],
-            "project": self.project,
-        }
+    # def get_json(self):
+    #     return {
+    #         "title": self.title,
+    #         "content": self.content,
+    #         "resource_link": self.resource_link,
+    #         "video_link": self.video_link,
+    #         "prev": self.prev,
+    #         "next": self.next,
+    #         "files": [f.file for f in ArticleFile.objects.filter(pk=self.pk)],
+    #         "project": self.project,
+    #     }
 
 
 class Hint(models.Model):
