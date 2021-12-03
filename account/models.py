@@ -25,4 +25,5 @@ class Employee(models.Model):
         on_delete=models.SET_NULL,
         related_name='employees',
         related_query_name='employee',
+        null=True,
     )
