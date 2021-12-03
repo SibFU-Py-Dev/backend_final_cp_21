@@ -20,6 +20,8 @@ from project import views as project_views
 
 router = routers.DefaultRouter()
 router.register('projects', project_views.ProjectViewSet)
+router.register('articles', project_views.ArticleViewSet)
+router.register('hints', project_views.HintViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
