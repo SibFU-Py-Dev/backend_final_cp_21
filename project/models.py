@@ -67,6 +67,18 @@ class Article(models.Model):
         null=True,
         help_text='Ссылка на ресурс статьи',
     )
+    resource_link_1 = models.URLField(
+        max_length=100,
+        null=True,
+        blank=True,
+        help_text='Ссылка на ресурс статьи',
+    )
+    resource_link_2 = models.URLField(
+        max_length=100,
+        null=True,
+        blank=True,
+        help_text='Ссылка на ресурс статьи',
+    )
     video_link = models.TextField(
         max_length=100,
         null=True,
@@ -106,6 +118,7 @@ class Article(models.Model):
             "video_link": self.video_link,
             "prev": self.prev.primary_key,
             "next": self.next.primary_key,
+            "files": [f.file for f in self.files.all()],
             "project": self.project.primary_key,
         }
 
