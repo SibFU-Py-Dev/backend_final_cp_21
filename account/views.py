@@ -7,7 +7,19 @@ from . import serializers, models
 class EmployeeListView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = serializers.EmployeeSerializer
-    queryset = models.Employee.objects.all()
+    queryset = models.Employee.objects.filter(role="ST")
+
+
+class TeacherListView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = serializers.EmployeeSerializer
+    queryset = models.Employee.objects.filter(role="TC")
+
+
+class AdminListView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = serializers.EmployeeSerializer
+    queryset = models.Employee.objects.filter(role="AD")
 
 
 class EmployeeInfoView(generics.RetrieveUpdateDestroyAPIView):
