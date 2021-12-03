@@ -4,6 +4,12 @@ from rest_framework.response import Response
 from . import serializers, models
 
 
+class EmployeeListView(generics.ListAPIView):
+    permission_classes = [permissions.AllowAny, ]
+    serializer_class = serializers.EmployeeSerializer
+    queryset = models.Employee.objects.all()
+
+
 class EmployeeInfoView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = serializers.EmployeeSerializer
