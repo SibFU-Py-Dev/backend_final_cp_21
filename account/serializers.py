@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
+from . import models
+
 
 class UserCreateSerializer(serializers.ModelSerializer):
 
@@ -34,6 +36,13 @@ class ResetPasswordSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
+        fields = "__all__"
+
+
+class EmployeeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Employee
         fields = "__all__"
 
 
