@@ -1,27 +1,36 @@
+from django.contrib.auth.models import User
 from django.db import models
 
-from django.contrib.auth.models import User
 from project.models import Project
 
 
 class Employee(models.Model):
-    img = ...
-    user = models.ForeignKey(
+    img = models.ImageField(
+        upload_to='users/avatars/',
+        null=True,
+        verbose_name='Аватар',
+    )
+    user = models.OneToOneField(
         User,
         verbose_name="Пользователь",
         on_delete=models.CASCADE,
-        related_name="employee"
+        related_name="employee",
     )
-    mobile_phone = ...
-    city_phone = ...
-    hobby = ...
-    skills = ...
-    interests = ...
-    position = ...
-    achievements = ...
-    experience = ...
+    mobile_phone = models.CharField(
+        max_length=17,
+        help_text='Номер мобильного телефона',
+    )
+    city_phone = models.CharField(
+        max_length=7,
+        help_text='Номер городского телефона',
+    )
+    hobby = models.TextField()
+    skills = models.TextField()
+    interests = models.TextField()
+    # achievements = ...
+    experience = models.IntegerField()
     project = models.ForeignKey(
-        Project,
+        to=Project,
         on_delete=models.SET_NULL,
         related_name='employees',
         related_query_name='employee',
