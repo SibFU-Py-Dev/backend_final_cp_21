@@ -98,6 +98,17 @@ class Article(models.Model):
         help_text='Проект, в котором содержится эта статья',
     )
 
+    def get_json(self):
+        return {
+            "title": self.title,
+            "content": self.content,
+            "resource_link": self.resource_link,
+            "video_link": str(self.video_link).split('=')[1],
+            "prev": self.prev.primary_key,
+            "next": self.next.primary_key,
+            "project": self.project.primary_key,
+        }
+
 
 class Hint(models.Model):
     source = models.ForeignKey(

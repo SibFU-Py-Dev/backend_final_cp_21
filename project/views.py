@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
+from django.http import JsonResponse
 
 from .serializers import ArticleSerializer, HintSerializer, ProjectSerializer
 from .models import Article, Hint, Project
@@ -21,3 +22,12 @@ class ArticleViewSet(viewsets.ModelViewSet):
 class HintViewSet(viewsets.ModelViewSet):
     serializer_class = HintSerializer
     queryset = Hint.objects.all().select_related()
+
+
+def articles(request):
+    current_article = Article.objects.filter(pk=1).first()
+    other_articles = Article.objects.exclude(current_article)
+    return JsonResponse({
+        "current_article": current_article,
+        "other_articles": other_articles,
+    }, status=200)
