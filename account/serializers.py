@@ -42,7 +42,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class EmployeeSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
-    project = ProjectSerializer(many=True, read_only=True)
+    project = ProjectSerializer(read_only=True)
 
     class Meta:
         model = models.Employee
