@@ -11,7 +11,7 @@ class TaskSerializer(serializers.ModelSerializer):
 
 
 class UserTasksSerializer(serializers.ModelSerializer):
-    task = TaskSerializer(many=True)
+    task = TaskSerializer()
     user = UserSerializer()
     responsible = UserSerializer()
 

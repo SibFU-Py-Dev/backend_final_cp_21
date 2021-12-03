@@ -13,28 +13,34 @@
 | Имя              |         Компетенция         | Telegram    |
 |:-----------------|:----------------------------|:------------|
 | Алексей Бобров   | Backend, Django             | @sazoks1    |
-| Алексей Колезнев | Frontend, React             |             |
-| Алексей Ковалюк  | Frontend, React             |             |
+| Алексей Колезнев | Frontend, React             | @koleznev96 |
+| Алексей Ковалюк  | Frontend, React             | @a_kovaluyk |
 | Никита Матюхин   | Backend, Django             | @nmatyukhin |
 | Назар Матвиенко  | Backend, Django             | @ZZaRRyaDD  |
 
 ## Доступы
 
-Бэкенд и фронтенд части хостятся на сервисе Heroku. Для перехода [нажмите сюда](https://backend-final-cp-21.herokuapp.com/ "Задеплоенная версия").
+Бэкенд и фронтенд части хостятся на сервисе Heroku. Для
+перехода [нажмите сюда](https://backend-final-cp-21.herokuapp.com/ "Задеплоенная версия").
 
 Пароли и логины к ролевым учёткам можно посмотреть ниже.
 
 ### Учётка руководителя:
+
 ```
 login: supervisor
 password: 123456
 ```
+
 ### Учётка наставника:
+
 ```
 login: mentor
 password: 123456
 ```
+
 ### Учётка сотрудника:
+
 ```
 login: employee
 password: 123456
