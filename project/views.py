@@ -3,7 +3,6 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
-from rest_framework import serializers
 from django.http import JsonResponse
 
 from .serializers import ArticleSerializer, HintSerializer, ProjectSerializer
@@ -18,22 +17,6 @@ class ProjectViewSet(viewsets.ModelViewSet):
 class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
     queryset = Article.objects.all().select_related()
-    files = serializers.StringRelatedField(many=True)
-
-    class Meta:
-        model = Article
-        fields = [
-            'title',
-            'content',
-            'resource_link',
-            'resource_link_1',
-            'resource_link_2',
-            'video_link',
-            'prev',
-            'next',
-            'project',
-            'files',
-        ]
 
 
 # def articles(request):

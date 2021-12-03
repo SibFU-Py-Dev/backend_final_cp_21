@@ -51,6 +51,7 @@ class HintSerializer(serializers.ModelSerializer):
 
 class ArticleSerializer(serializers.ModelSerializer):
     source_hints = HintSerializer(many=True, read_only=True)
+    files = serializers.StringRelatedField(many=True)
 
     prev_id = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
     next_id = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
@@ -59,5 +60,5 @@ class ArticleSerializer(serializers.ModelSerializer):
         model = Article
         fields = [
             'id', 'title', 'content', 'resource_link', 'video_link',
-            'prev_id', 'next_id', 'source_hints',
+            'prev_id', 'next_id', 'source_hints', 'files',
         ]
